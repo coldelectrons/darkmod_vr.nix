@@ -1,0 +1,6 @@
+cmake-build-*
+hlprogs/*.h
+build/
+Darkmod.log
+darkmod_src/
+cmake/nix_deps.cmake
