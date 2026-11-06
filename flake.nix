@@ -45,7 +45,7 @@
             tdm_installer = pkgs.callPackage ./installer.nix { stdenv = pkgs.clangStdenv; };
             tdm_packager = pkgs.callPackage ./packager.nix { stdenv = pkgs.clangStdenv; };
           };
-          devShells.default = pkgs.mkShell {
+          devShells.default = pkgs.mkShell rec {
             packages = with pkgs; [
               #
               clang
@@ -81,7 +81,7 @@
               wayland
               libxkbcommon
             ];
-            startup = with pkgs; ''
+            shellHook = with pkgs; ''
               cp cmake/nix_deps.cmake.in cmake/nix_deps.cmake
               substituteInPlace cmake/nix_deps.cmake \
                 --replace-fail '@ZLIB_ROOT_DIR@'      '${zlib}' \
@@ -91,7 +91,7 @@
                 --replace-fail '@GLFW3_ROOT_DIR@'     '${glfw3}' \
                 --replace-fail '@CURL_ROOT_DIR@'      '${curl}' \
                 --replace-fail '@LIBJPEG_ROOT_DIR@'   '${libjpeg}' \
-                --replace-fail '@LIBPNG_ROOT_DIR@'    '${png}' \
+                --replace-fail '@LIBPNG_ROOT_DIR@'    '${libpng}' \
                 --replace-fail '@FFMPEG_ROOT_DIR@'    '${ffmpeg}' \
                 --replace-fail '@OGG_ROOT_DIR@'       '${libogg}' \
                 --replace-fail '@VORBIS_ROOT_DIR@'    '${libvorbis}' \
@@ -100,13 +100,13 @@
                 --replace-fail '@WAYLAND_ROOT_DIR@'   '${wayland}' \
                 --replace-fail '@MBEDTLS_ROOT_DIR@'   '${mbedtls}' \
                 --replace-fail '@XKBCOMMON_ROOT_DIR@' '${libxkbcommon}' \
-                --replace-fail '@OPENXR_ROOT_DIR@'    '${openxr}' \
+                --replace-fail '@OPENXR_ROOT_DIR@'    '${openxr-loader}' \
                 --replace-fail '@TRACY_ROOT_DIR@'     '${tracy}' \
                 --replace-fail '@DOCTEST_ROOT_DIR@'   '${doctest}'
             '';
             env = {
-              CMAKE_COMPILE_COMMANDS_EXPORT="ON";
-              CMAKE_MODULE_PATH="./cmake/";
+              # CMAKE_COMPILE_COMMANDS_EXPORT="ON";
+              # CMAKE_MODULE_PATH="./cmake/";
             };
           };
         };
