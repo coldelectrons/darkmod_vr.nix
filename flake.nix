@@ -60,30 +60,63 @@
               # fltk_1_4
               libtool
 
-              libblake3
-              zlib
-              minizip
-              curl
               openxr-loader
               vulkan-loader
               vulkan-headers
               libGL
               libGLU
-              glfw3
-              libjpeg
-              libpng
-              libogg
-              libvorbis
-              openal
-              ffmpeg-headless
-              pugixml
-              doctest
-              tracy
-              mbedtls
-              # libx11
               wayland
               wayland-scanner
               libxkbcommon
+              libffi
+
+              # libblake3
+              # zlib
+              # minizip
+              # curl
+              # glfw3
+              # libjpeg
+              # libpng
+              # libogg
+              # libvorbis
+              # openal
+              # ffmpeg-headless
+              # pugixml
+              # doctest
+              # tracy
+              # mbedtls
+
+              # why so much x11 deps
+              libx11
+              libXext
+              libxxf86vm
+              libxkbcommon
+              libxaw
+              libxfixes
+              libxkbfile
+              libxpm
+              libxcb
+              libxcb-wm
+              libxcb-util
+              libxcb-image
+              libxcb-cursor
+              libxcb-errors
+              libxcb-keysyms
+              libxcb-render-util
+              libxi
+              libxinerama
+              libxscrnsaver
+              libSM
+              libxv
+              libxcursor
+              libxrandr
+              libxrender
+              libice
+              libfontenc
+              libxt
+              libxdamage
+              libxdmcp
+              libxmu
             ];
             shellHook = with pkgs; ''
               cp cmake/nix_deps.cmake.in cmake/nix_deps.cmake
