@@ -47,17 +47,18 @@
           };
           devShells.default = pkgs.mkShell rec {
             packages = with pkgs; [
-              #
+              pkg-config
+              cmake
               clang
               clang-tools
               conan
               python3
-              cmake
               ninja
               gnumake
-              pkg-config
               subversion
               git
+              # fltk_1_4
+              libtool
 
               libblake3
               zlib
@@ -66,6 +67,8 @@
               openxr-loader
               vulkan-loader
               vulkan-headers
+              libGL
+              libGLU
               glfw3
               libjpeg
               libpng
@@ -77,8 +80,9 @@
               doctest
               tracy
               mbedtls
-              libx11
+              # libx11
               wayland
+              wayland-scanner
               libxkbcommon
             ];
             shellHook = with pkgs; ''

@@ -109,44 +109,42 @@ in stdenv.mkDerivation {
   # at compile time) and normal `buildInputs` (runnable on target
   # platform at run time) is an important preparation for cross-compilation.
   nativeBuildInputs = [
+    pkg-config
+    cmake
     clang-tools
     clang
-    cmake
     ninja
     cppcheck
-    pkg-config
     subversion
-    curl
-    fltk
   ];
   buildInputs = [
     pkg-config
     openxr-loader
-    openxr-loader.dev
+    vulkan-loader
+    vulkan-headers
     wayland
     wayland.dev
     libxkbcommon
-    libblake3
-    zlib-ng
-    minizip-ng
-    curl
-    curl.dev
-    vulkan-loader
-    vulkan-headers
-    glfw3
-    libjpeg
-    libpng
-    libogg
-    libvorbis
-    openal
-    ffmpeg-headless
-    ffmpeg-headless.dev
-    pugixml
-    doctest
-    tracy
-    mbedtls
-    fltk
-    libuuid
+    # libblake3
+    # zlib-ng
+    # minizip-ng
+    # curl
+    # curl.dev
+    # glfw3
+    # libjpeg
+    # libpng
+    # libogg
+    # libvorbis
+    # openal
+    # ffmpeg-headless
+    # ffmpeg-headless.dev
+    # pugixml
+    # doctest
+    # tracy
+    # mbedtls
+    # fltk
+    # libuuid # ???
+
     # libx11
     # libx11.dev
     # libXext
@@ -189,10 +187,10 @@ in stdenv.mkDerivation {
   cmakeFlags = [
     (lib.cmakeFeature "CMAKE_POLICY_VERSION_MINIMUM" "3.27")
     (lib.cmakeFeature "CMAKE_BUILD_TYPE" "Release")
-    (lib.cmakeFeature "CMAKE_MODULES_PATH" "./cmake")
-    (lib.cmakeBool "CMAKE_EXPORT_COMPILE_COMMANDS" true)
-    (lib.cmakeBool "NIXOS" true)
-    (lib.cmakeBool "TDM_THIRDPARTY_ARTEFACTS" false)
+    # (lib.cmakeFeature "CMAKE_MODULES_PATH" "${src}/ThirdParty/artefacts/linux64")
+    # (lib.cmakeBool "CMAKE_EXPORT_COMPILE_COMMANDS" true)
+    # (lib.cmakeBool "NIXOS" true)
+    # (lib.cmakeBool "TDM_THIRDPARTY_ARTEFACTS" true)
   ];
   # Instruct the build process to run tests.
   # The generic builder script of `mkDerivation` handles all the default
